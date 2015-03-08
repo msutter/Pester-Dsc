@@ -9,6 +9,7 @@
     $ModuleName           = (Split-Path -Leaf $ModulePath)
     $ResourceName         = (Split-Path -Leaf $ResourcePath)
     $SchemaMofPath        = "${ResourcePath}\${ResourceName}.schema.mof"
+    $TestConfig           = ".\${ResourceName}.Tests.Config.ps1"
     $MofRootPath          = "${TestDrivePath}\TestConfig"
     $MofPath              = "${MofRootPath}\test.mof"
     $TestModulePath       = "${TestDrivePath}\Modules"
@@ -23,7 +24,7 @@
     Copy-Item -Recurse "${ModulePath}" "${TestModulePath}\${ModuleName}"
     $env:PsModulePath = "${TestModulePath};C:\Windows\system32\WindowsPowerShell\v1.0\Modules"    
     Get-DscResource -Name $ResourceName | out-null
-    . ".\${ResourceName}.Tests.Config.ps1"
+    . $TestConfig
     TestConfig -OutputPath $MofRootPath
 
     $env:PSMODULEPATH = $OriginalPSMODULEPATH
