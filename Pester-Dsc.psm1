@@ -13,6 +13,7 @@
     $MofRootPath          = "${TestDrivePath}\TestConfig"
     $MofPath              = "${MofRootPath}\test.mof"
     $TestModulePath       = "${TestDrivePath}\Modules"
+
     $OriginalPSMODULEPATH = $env:PSMODULEPATH
 
     if (Test-path $TestModulePath) {Remove-Item -Recurse -Force $TestModulePath}
